@@ -1,0 +1,40 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #e63946;
+  box-sizing: border-box;
+}
+
+.navbar li {
+  list-style: none;
+  margin: 0 15px;
+  cursor: pointer;
+  color: white;
+}
+
+.navbar li:hover,
+.navbar li:focus {
+  background-color: #007bff;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  transition: background-color 0.3s, padding 0.3s;
+}
+
+.cart-container {
+  display: flex;
+  align-items: center;
+}
+
+.cart-icon {
+  font-size: 24px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.logo {
+  height: 60px; 
+  margin-right: 20px; 
+}

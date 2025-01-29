@@ -1,0 +1,16 @@
+
+h3{
+    font-size: 1.2rem;
+   
+}
+
+.cart-container{
+    display: flex;
+    align-items: center;
+}
+
+.cart-icon{
+    font-size: 24px; /* Ajusta el tamaño según sea necesario */
+    margin-right: 5px; /* Espacio entre el ícono y el número */
+
+}
