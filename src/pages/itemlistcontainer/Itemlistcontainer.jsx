@@ -3,11 +3,19 @@ import { products } from "../../products";
 import Cardproducts from "../../common/cardproducts/Cardproducts";
 
 const itemlistcontainer = () => {
+
+
+
   return (
+
+
+
+    
     <div >
       <h1>Hamburguesas bash</h1>
       <div className="itemlistcontainer">
       {products.map((product) => {
+        
         return (
           <Cardproducts
             key={product.id}
@@ -16,6 +24,7 @@ const itemlistcontainer = () => {
             price={product.price}
             imageUrl={product.imageUrl}
             description={product.description}
+            category={product.category}
           />
         );
       })}
@@ -23,5 +32,6 @@ const itemlistcontainer = () => {
     </div>
   );
 };
+
 
 export default itemlistcontainer;
