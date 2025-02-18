@@ -1,12 +1,19 @@
-import Itemlistcontainer from "./itemlistcontainer/Itemlistcontainer";
-import Navbar from "./navbar/Navbar";
+import Itemlistcontainer from "./pages/itemlistcontainer/Itemlistcontainer";
+import Navbar from "./layouts/navbar/Navbar";
+import { BrowserRouter, Routes, Route } from "react-router";
+
+import { Itemdetail } from "./pages/itemdetail/Itemdetail";
 
 function app() {
   return (
-    <div>
+    <BrowserRouter>
       <Navbar />
-      <Itemlistcontainer />
-    </div>
+      <Routes>
+        <Route path="/" element={<Itemlistcontainer />} />
+        <Route path="/itemdetail/:id" element={<Itemdetail />} />
+        <Route path="*" element={<h2>404 not found</h2>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

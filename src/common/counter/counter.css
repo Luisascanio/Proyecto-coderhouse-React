@@ -1,0 +1,10 @@
+.counter{
+    margin-top: 5rem;
+    gap: 10px;
+    display: flex;
+
+}
+
+.counterBuy{
+    margin: 0.5rem;
+}
