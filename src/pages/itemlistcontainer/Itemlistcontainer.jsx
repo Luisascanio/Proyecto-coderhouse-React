@@ -1,22 +1,23 @@
+import { useState, useEffect } from "react";
 import "./itemlistcontainer.css";
 import { products } from "../../products";
 import Cardproducts from "../../common/cardproducts/Cardproducts";
+import { useParams } from "react-router";
 
-const itemlistcontainer = () => {
+const ItemListContainer = () => {
+  const { name } = useParams();
+  const [items, setItems] = useState([]);
 
-
+  useEffect(() => {
+    setItems(name ? products.filter((item) => item.category === name) : products);
+  }, [name]);
 
   return (
+    <div>
+      <h1>Hamburguesas Bash</h1>
 
-
-
-    
-    <div >
-      <h1>Hamburguesas bash</h1>
       <div className="itemlistcontainer">
-      {products.map((product) => {
-        
-        return (
+        {items.map((product) => (
           <Cardproducts
             key={product.id}
             id={product.id}
@@ -26,12 +27,10 @@ const itemlistcontainer = () => {
             description={product.description}
             category={product.category}
           />
-        );
-      })}
+        ))}
       </div>
     </div>
   );
 };
 
-
-export default itemlistcontainer;
+export default ItemListContainer;
