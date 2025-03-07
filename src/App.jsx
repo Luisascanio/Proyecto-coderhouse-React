@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 
 import { Itemdetail } from "./pages/itemdetail/Itemdetail";
 import { Cart } from "./pages/cart/Cart";
+import Checkout from "./pages/checkout/Checkout";
 
 function app() {
   return (
@@ -13,7 +14,8 @@ function app() {
         <Route path="/" element={<Itemlistcontainer />} />
         <Route path="/itemdetail/:id" element={<Itemdetail />} />
         <Route path="/category/:name" element={<Itemlistcontainer />} />
-        <Route path="/cart" element={<Cart/>} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="*" element={<h2>404 not found</h2>} />
       </Routes>
     </BrowserRouter>

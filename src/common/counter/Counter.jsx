@@ -20,10 +20,12 @@ const Counter = () => {
       alert("minimo 1 producto");
     }
   };
+  // el carrito
 
   const onAdd = () => {
     console.log("agregar al carrito");
   };
+
   return (
     <div>
       <div className="counter">

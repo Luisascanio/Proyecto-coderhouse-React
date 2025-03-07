@@ -1,7 +1,10 @@
-
+import { Link } from "react-router";
 
 export const Cart = () => {
   return (
-    <div>Carrito</div>
-  )
-}
+    <div>
+      Carrito
+      <Link to="/checkout">finalizar</Link>
+    </div>
+  );
+};
