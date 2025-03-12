@@ -29,6 +29,7 @@ const ItemListContainer = () => {
             imageUrl={product.imageUrl}
             description={product.description}
             category={product.category}
+            stock={product.stock}
           />
         ))}
       </div>

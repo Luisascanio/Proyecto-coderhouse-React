@@ -5,10 +5,12 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import { Itemdetail } from "./pages/itemdetail/Itemdetail";
 import { Cart } from "./pages/cart/Cart";
 import Checkout from "./pages/checkout/Checkout";
+import CartContextProvider from "./context/CartContext";
 
 function app() {
   return (
     <BrowserRouter>
+    <CartContextProvider>
       <Navbar />
       <Routes>
         <Route path="/" element={<Itemlistcontainer />} />
@@ -18,6 +20,7 @@ function app() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="*" element={<h2>404 not found</h2>} />
       </Routes>
+     </CartContextProvider> 
     </BrowserRouter>
   );
 }

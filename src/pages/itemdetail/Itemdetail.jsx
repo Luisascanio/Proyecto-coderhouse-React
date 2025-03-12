@@ -38,7 +38,7 @@ export const Itemdetail = () => {
         </CardContent>
         <CardActions></CardActions>
       </Card>
-      <Counter />
+      <Counter item={item} />
     </div>
   );
 };

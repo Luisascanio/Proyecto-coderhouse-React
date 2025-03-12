@@ -1,15 +1,19 @@
-import { FaCartPlus } from "react-icons/fa";
-import "./cartwidjet.css";
+import Badge from "@mui/material/Badge";
 
-const Cartwidjet = () => {
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import "./cartwidjet.css";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
+
+function Cartwidjet() {
+
+  const { getTotalQuantity } = useContext(CartContext);
+  const total = getTotalQuantity();
   return (
-    <div>
-      <div className="cart-container">
-        <FaCartPlus className="cart-icon" />
-        <h3>1</h3>
-      </div>
-    </div>
+    <Badge badgeContent={total} color="primary">
+      <ShoppingCartIcon color="action" />
+    </Badge>
   );
-};
+}
 
 export default Cartwidjet;

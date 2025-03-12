@@ -1,15 +1,19 @@
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./counter.css";
+import { CartContext } from "../../context/CartContext";
 
-const Counter = () => {
+const Counter = ({item}) => {
+ 
   const [contador, setContador] = useState(1);
+  const {addToCart} = useContext(CartContext)
 
   const sumar = () => {
-    if (contador < 15) {
+    
+    if (contador < item.stock) {
       setContador(contador + 1);
     } else {
-      alert("stock maximo ");
+      alert("stock maximo");
     }
   };
 
@@ -23,7 +27,8 @@ const Counter = () => {
   // el carrito
 
   const onAdd = () => {
-    console.log("agregar al carrito");
+    let objetoParaElCarrito = { ...item, quantity: contador };
+    addToCart(objetoParaElCarrito);
   };
 
   return (

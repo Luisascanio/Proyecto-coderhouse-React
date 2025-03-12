@@ -8,7 +8,7 @@ import { Link } from "react-router";
 
 import "./cardproducts.css";
 
-const Cardproducts = ({ title, price, id, imageUrl, description }) => {
+const Cardproducts = ({ title, stock, price, id, imageUrl, description }) => {
   return (
     <div>
       <Card sx={{ MaxWidth: 345 }}>
@@ -18,6 +18,7 @@ const Cardproducts = ({ title, price, id, imageUrl, description }) => {
           title={title}
           description={description}
           id={id}
+          stock={stock}
         />
 
         <CardContent>
