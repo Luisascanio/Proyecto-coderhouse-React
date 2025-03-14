@@ -1,9 +1,14 @@
 import { Box, TextField, Button } from "@mui/material";
- import { useState } from "react";
+
+ import { useContext, useState } from "react";
+import { CartContext } from "../../context/CartContext";
+import { db } from "../../firebaseConfig";
+import { addDoc, collection, updateDoc, doc } from "firebase/firestore";
 
 
 const Checkout = () => {
-
+  const { cart, TotalAmount, ResetCart } = useContext(CartContext);
+  // const [isLoading, setIsLoading] = useState(false);
    const [user, setUser ] = useState({
     nombre:"",
     email:"",
@@ -14,11 +19,38 @@ const Checkout = () => {
 
    });
 
+   const [orderId, setOrderId] = useState(null);
+
    const finalizarcompra = (evento) =>{
     evento.preventDefault()
-    console.log(user)
+    // setIsLoading(true);
+    // orden = { comprador ---> nombre , email, telefono , items ---> array de products,
+    //  total ---> el numero total a pagar }
+    let total = TotalAmount();
+    let order = {
+      buyer: user,
+      items: cart,
+      total: total,
    };
 
+
+   let refCollection = collection(db, "orders");
+    const promiseResponse = addDoc(refCollection, order);
+    promiseResponse
+      .then((res) => {
+        setOrderId(res.id);
+        ResetCart();
+        // setIsLoading(false);
+      })
+      .catch((error) => console.log({ error }));
+
+    let productsCollection = collection(db, "products");
+
+    order.items.forEach((item) => {
+      let productRef = doc(productsCollection, item.id);
+      updateDoc(productRef, { stock: item.stock - item.quantity });
+    });
+  }
   const catchdata = (evento) =>{
    
      const {value,id} = evento.target;
@@ -32,8 +64,14 @@ const Checkout = () => {
   return (
     <div>
       <h1>Ingresa tus datos para pagar</h1>
-      
-      <Box
+
+      {orderId ?(
+        <h2>gracias por tu compra tu recibo es: {orderId}</h2>
+      ) : (
+
+
+
+        <Box
         component="form"
         sx={{
           display: "flex",
@@ -71,9 +109,14 @@ const Checkout = () => {
           </Button>
         </Box>
       </Box>
+
+
+      )
+    }
+     
   
     </div>
   );
-};
+}
 
 export default Checkout;

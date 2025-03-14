@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { products } from "../../products";
+// import { products } from "../../products";
 import { useParams } from "react-router";
 import Counter from "../../common/counter/Counter";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-
 import Typography from "@mui/material/Typography";
 import "./itemdetail.css";
+import { db } from "../../firebaseConfig";
+import {  doc, getDoc, collection } from "firebase/firestore";
+
 
 export const Itemdetail = () => {
   const { id } = useParams();
@@ -16,8 +18,12 @@ export const Itemdetail = () => {
   const [item, setItem] = useState({});
 
   useEffect(() => {
-    let producto = products.find((product) => product.id === id);
-    setItem(producto);
+    let productCollection = collection(db, "products");
+    let refDoc = doc(productCollection, id);
+    const getProduct = getDoc(refDoc);
+    getProduct.then((res) => {
+      setItem({ id: res.id, ...res.data() });
+    });
   }, [id]);
 
   return (
