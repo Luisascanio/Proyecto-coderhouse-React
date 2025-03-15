@@ -11,10 +11,10 @@ const Navbar = () => {
         <img src={logo} alt="Hamburguesas Bash Logo" className="logo" />
         </Link>
         
-        <Link to="/">Todas</Link>
-        <Link to="/category/Hamburguesas" className="navlink">Hamburguesas</Link>
-        <Link to="/category/Hotdogs" className="navlink">Hotdogs</Link>
-        <Link to="/cart" className="">
+        <Link to="/" className="navbarlink">Todas</Link>
+        <Link to="/category/Hamburguesas" className="navbarlink">Hamburguesas</Link>
+        <Link to="/category/Hotdogs" className="navbarlink">Hotdogs</Link>
+        <Link to="/cart" >
         <Cartwidjet />
       </Link>
         
