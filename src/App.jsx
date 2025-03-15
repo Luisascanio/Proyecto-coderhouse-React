@@ -6,11 +6,13 @@ import { Itemdetail } from "./pages/itemdetail/Itemdetail";
 import { Cart } from "./pages/cart/Cart";
 import Checkout from "./pages/checkout/Checkout";
 import CartContextProvider from "./context/CartContext";
+import { Toaster } from "sonner";
 
 function app() {
   return (
     <BrowserRouter>
     <CartContextProvider>
+      <Toaster richColors={true}/>
       <Navbar />
       <Routes>
         <Route path="/" element={<Itemlistcontainer />} />

@@ -2,6 +2,7 @@ import Button from "@mui/material/Button";
 import { useState, useContext } from "react";
 import "./counter.css";
 import { CartContext } from "../../context/CartContext";
+import { toast, Toaster } from "sonner";
 
 const Counter = ({item}) => {
  
@@ -29,6 +30,11 @@ const Counter = ({item}) => {
   const onAdd = () => {
     let objetoParaElCarrito = { ...item, quantity: contador };
     addToCart(objetoParaElCarrito);
+    toast.success('Agregado al Carrito'),
+
+    // ...
+    
+    <Toaster richColors  />
   };
 
   return (

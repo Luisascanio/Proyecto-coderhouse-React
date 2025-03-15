@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import "./itemlistcontainer.css";
-// import  {products} from "../../products"
 import Cardproducts from "../../common/cardproducts/Cardproducts";
 import { useParams } from "react-router";
 import { db } from "../../firebaseConfig";
 import { getDocs, collection, query, where } from "firebase/firestore";
+import { Box, CircularProgress } from "@mui/material";
 
 const ItemListContainer = () => {
   const { name } = useParams();
-
-  const [items, setItems] = useState([]); // {id, title ....}
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); 
 
   useEffect(() => {
     const coleccionDeProductos = collection(db, "products");
@@ -30,35 +30,42 @@ const ItemListContainer = () => {
         return { id: elemento.id, ...elemento.data() };
       });
       setItems(newArray);
+      setIsLoading(false); 
     });
   }, [name]);
 
-  // const rellenar = () =>{
-  //   let coleccionDeProductos = collection(db, "products")
-
-  //   products.forEach(product => {
-  //     addDoc(coleccionDeProductos,product)
-  //   });
-  // }
   return (
     <div>
-      <h1>Hamburguesas Bash</h1>
-      {/* <button onClick={rellenar}>rellenar db</button> */}
-
-      <div className="itemlistcontainer">
-        {items.map((product) => (
-          <Cardproducts
-            key={product.id}
-            id={product.id}
-            title={product.title}
-            price={product.price}
-            imageUrl={product.imageUrl}
-            description={product.description}
-            category={product.category}
-            stock={product.stock}
-          />
-        ))}
-      </div>
+      {isLoading ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh", 
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      ) : (
+        <>
+          <h1>Hamburguesas Bash</h1>
+          <div className="itemlistcontainer">
+            {items.map((product) => (
+              <Cardproducts
+                key={product.id}
+                id={product.id}
+                title={product.title}
+                price={product.price}
+                imageUrl={product.imageUrl}
+                description={product.description}
+                category={product.category}
+                stock={product.stock}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };
